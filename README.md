@@ -21,7 +21,7 @@ git clone https://github.com/balalaika7771/basket.git
 2. Перейдите в директорию проекта:
 
 ```
-cd your-repository
+cd basket
 ```
 
 3. Соберите проект с помощью Maven:
