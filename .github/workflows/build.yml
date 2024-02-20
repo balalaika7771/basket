@@ -1,9 +1,10 @@
-name: Java CI/CD
+name: Java CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -16,10 +17,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
           java-version: '17'
 
       - name: Build with Maven
-        run: mvn clean install
-
-
+        run: mvn -B clean test
