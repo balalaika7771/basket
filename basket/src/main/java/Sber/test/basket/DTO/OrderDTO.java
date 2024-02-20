@@ -4,6 +4,10 @@ import Sber.test.basket.models.Order;
 
 import java.util.Objects;
 
+/**
+ * Data Transfer Object (DTO) для представления заказа.
+ * Используется для передачи данных о заказе между контроллером и представлением.
+ */
 public class OrderDTO {
 
     private Long id;
@@ -13,13 +17,23 @@ public class OrderDTO {
     public OrderDTO() {
 
     }
-
+    /**
+     * Конструктор для создания DTO из сущности заказа.
+     *
+     * @param order сущность заказа
+     */
     public OrderDTO(Order order){
         this.name = order.getName();
         this.price = order.getPrice();
         this.id = order.getId();
     }
 
+    /**
+     * Заменить данные текущего DTO на данные из другого заказа.
+     *
+     * @param order данные заказа для замены
+     * @return текущий DTO с обновленными данными
+     */
     public  Order replace(Order order){
         order.setPrice(this.getPrice());
         order.setName(this.getName());
