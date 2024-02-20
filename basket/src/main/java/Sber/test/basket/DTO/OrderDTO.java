@@ -8,7 +8,7 @@ import java.util.Objects;
  * Data Transfer Object (DTO) для представления заказа.
  * Используется для передачи данных о заказе между контроллером и представлением.
  */
-public class OrderDTO {
+public class OrderDTO extends Throwable {
 
     private Long id;
     private String name;
@@ -69,15 +69,19 @@ public class OrderDTO {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof OrderDTO orderDTO)) return false;
         return Objects.equals(getName(), orderDTO.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                '}';
     }
 
     @Override

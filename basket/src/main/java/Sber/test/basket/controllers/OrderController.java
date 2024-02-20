@@ -3,10 +3,14 @@ package Sber.test.basket.controllers;
 import Sber.test.basket.DTO.OrderDTO;
 import Sber.test.basket.models.Order;
 import Sber.test.basket.services.OrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +21,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     private OrderService orderService;
@@ -29,6 +35,7 @@ public class OrderController {
      */
     @GetMapping("/")
     public String getAllOrders(Model model) {
+        logger.info("Retrieved all orders");
         List<Order> orders = orderService.getAllOrders();
         model.addAttribute("orders", orders);
         return "orders";
@@ -53,7 +60,7 @@ public class OrderController {
      */
     @PostMapping("/add")
     public String addOrder(@ModelAttribute OrderDTO order) {
-
+        logger.info("Added new order: {}", new Throwable(order.toString()));
         orderService.addOrder(order.replace(new Order()));
         return "redirect:/orders/";
     }
@@ -69,9 +76,11 @@ public class OrderController {
     public String showEditOrderForm(@PathVariable("id") long id, Model model) {
         Optional<Order> order = orderService.getOrderById(id);
         if (order.isPresent()) {
+            logger.info("Added new order: {}", new Throwable(order.toString()));
             model.addAttribute("order", new OrderDTO(order.get()));
             return "edit-order";
         } else {
+            logger.warn("Order not found!: {}", new Throwable(String.valueOf(id)));
             model.addAttribute("errorMessage", "Order not found!");
             return "error";
         }
@@ -86,6 +95,7 @@ public class OrderController {
      */
     @PostMapping("/edit/{id}")
     public String updateOrder(@PathVariable("id") long id, @ModelAttribute OrderDTO order) {
+        logger.info("Updated order: {}", new Throwable(order.toString()));
         order.setId(id);
         orderService.updateOrder(order.replace(new Order()));
         return "redirect:/orders/";
@@ -100,6 +110,7 @@ public class OrderController {
     @GetMapping("/delete/{id}")
     public String deleteOrder(@PathVariable("id") long id) {
         orderService.deleteOrder(id);
+        logger.info("Deleted order with ID {}", new Throwable(String.valueOf(id)));
         return "redirect:/orders/";
     }
 }
