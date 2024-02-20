@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/balalaika7771/basket/workflows/CI/badge.svg)](https://github.com/balalaika7771/basket/actions)
+[![Java CI/CD](https://github.com/balalaika7771/basket/actions/workflows/build.yml/badge.svg)](https://github.com/balalaika7771/basket/actions/workflows/build.yml)
 
 # Пример CRUD приложения на Java с использованием Spring Boot
 
