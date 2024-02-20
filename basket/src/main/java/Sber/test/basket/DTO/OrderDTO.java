@@ -5,6 +5,8 @@ import Sber.test.basket.models.Order;
 import java.util.Objects;
 
 public class OrderDTO {
+
+    private Long id;
     private String name;
 
     private String price;
@@ -15,11 +17,13 @@ public class OrderDTO {
     public OrderDTO(Order order){
         this.name = order.getName();
         this.price = order.getPrice();
+        this.id = order.getId();
     }
 
     public  Order replace(Order order){
         order.setPrice(this.getPrice());
         order.setName(this.getName());
+        order.setId(this.getId());
         return order;
     }
     public OrderDTO(String name) {
@@ -40,6 +44,14 @@ public class OrderDTO {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Sber.test.basket.controllers;
 
+import Sber.test.basket.DTO.OrderDTO;
 import Sber.test.basket.models.Order;
 import Sber.test.basket.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,14 @@ public class OrderController {
 
     @GetMapping("/add")
     public String showAddOrderForm(Model model) {
-        model.addAttribute("order", new Order());
+        model.addAttribute("order", new OrderDTO());
         return "add-order";
     }
 
     @PostMapping("/add")
-    public String addOrder(@ModelAttribute Order order) {
-        orderService.addOrder(order);
+    public String addOrder(@ModelAttribute OrderDTO order) {
+
+        orderService.addOrder(order.replace(new Order()));
         return "redirect:/orders/";
     }
 
@@ -41,7 +43,7 @@ public class OrderController {
     public String showEditOrderForm(@PathVariable("id") long id, Model model) {
         Optional<Order> order = orderService.getOrderById(id);
         if (order.isPresent()) {
-            model.addAttribute("order", order.get());
+            model.addAttribute("order", new OrderDTO(order.get()));
             return "edit-order";
         } else {
             model.addAttribute("errorMessage", "Order not found!");
@@ -50,9 +52,9 @@ public class OrderController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateOrder(@PathVariable("id") long id, @ModelAttribute Order order) {
+    public String updateOrder(@PathVariable("id") long id, @ModelAttribute OrderDTO order) {
         order.setId(id);
-        orderService.updateOrder(order);
+        orderService.updateOrder(order.replace(new Order()));
         return "redirect:/orders/";
     }
 

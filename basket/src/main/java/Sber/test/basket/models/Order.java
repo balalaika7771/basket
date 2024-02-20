@@ -11,6 +11,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true) // Это поле должно быть уникальным
     private String name;
 
     private String price;
