@@ -61,6 +61,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>basket</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -84,6 +85,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+
 
 	</build>
 
