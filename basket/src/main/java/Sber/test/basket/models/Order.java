@@ -1,12 +1,10 @@
 package Sber.test.basket.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -14,6 +12,8 @@ public class Order {
     private Long id;
 
     private String name;
+
+    private String price;
 
     // Геттеры и сеттеры
     public Long getId() {
@@ -30,6 +30,17 @@ public class Order {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public Order() {
     }
 }
 

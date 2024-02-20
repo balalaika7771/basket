@@ -1,11 +1,26 @@
 package Sber.test.basket.DTO;
 
+import Sber.test.basket.models.Order;
+
 import java.util.Objects;
 
 public class OrderDTO {
     private String name;
+
+    private String price;
     public OrderDTO() {
 
+    }
+
+    public OrderDTO(Order order){
+        this.name = order.getName();
+        this.price = order.getPrice();
+    }
+
+    public  Order replace(Order order){
+        order.setPrice(this.getPrice());
+        order.setName(this.getName());
+        return order;
     }
     public OrderDTO(String name) {
         this.name = name;
@@ -17,6 +32,14 @@ public class OrderDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     @Override
