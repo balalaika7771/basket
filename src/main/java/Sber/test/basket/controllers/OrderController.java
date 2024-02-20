@@ -19,6 +19,7 @@ import java.util.Optional;
  * Контроллер для управления заказами.
  */
 @Controller
+@RequestMapping("/orders")
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
