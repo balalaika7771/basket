@@ -15,7 +15,7 @@
 1. Клонируйте репозиторий на ваш компьютер:
 
 ```
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/balalaika7771/basket.git
 ```
 
 2. Перейдите в директорию проекта:
@@ -33,7 +33,7 @@ mvn clean package
 4. Запустите приложение:
 
 ```
-java -jar target/your-application.jar
+java -jar target/basket.jar
 ```
 
 После этого приложение будет доступно по адресу [http://localhost:8080](http://localhost:8080).
